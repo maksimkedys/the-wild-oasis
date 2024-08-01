@@ -6,7 +6,7 @@ import { subtractDates } from "../utils/helpers";
 
 import { bookings } from "./data-bookings";
 import { cabins } from "./data-cabins";
-import { guests } from "./data-guests";
+import { Guest, guests } from "./data-guests";
 
 // const originalSettings = {
 //   minBookingLength: 3,
@@ -46,7 +46,8 @@ async function createBookings() {
     .from("guests")
     .select("id")
     .order("id");
-  const allGuestIds = guestsIds.map((cabin) => cabin.id);
+
+  const allGuestIds: Guest[] = guestsIds.map((cabin) => cabin.id);
   const { data: cabinsIds } = await supabase
     .from("cabins")
     .select("id")
