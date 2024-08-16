@@ -3,11 +3,12 @@ import { supabaseUrl } from "../services/supabase";
 const imageUrl = `${supabaseUrl}/storage/v1/object/public/cabin-images/`;
 
 export type Cabin = {
+  id?: number;
   name: string;
   maxCapacity: number;
   regularPrice: number;
   discount: number;
-  image: string;
+  image: string | File;
   description: string;
 };
 

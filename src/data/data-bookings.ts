@@ -1,6 +1,7 @@
 import { add } from "date-fns";
 
 export type Booking = {
+  id?: string;
   created_at: string;
   startDate: string;
   endDate: string;

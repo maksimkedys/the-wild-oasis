@@ -1,8 +1,11 @@
 import supabase from "./supabase";
 
 interface Settings {
-  id: number;
-  // [key: string]: any;
+  id: 1;
+  minBookingLength: number;
+  maxBookingLength: number;
+  maxGuestsPerBooking: number;
+  breakfastPrice: number;
 }
 
 export async function getSettings(): Promise<Settings> {
@@ -15,14 +18,12 @@ export async function getSettings(): Promise<Settings> {
   return data as Settings;
 }
 
-// We expect a newSetting object that looks like {setting: newValue}
-export async function updateSetting(
-  newSetting: Partial<Settings>
-): Promise<Settings> {
+export async function updateSetting(newSetting: {
+  [fieldName: string]: string;
+}): Promise<Settings> {
   const { data, error } = await supabase
     .from("settings")
     .update(newSetting)
-    // There is only ONE row of settings, and it has the ID=1, and so this is the updated one
     .eq("id", 1)
     .single();
 
